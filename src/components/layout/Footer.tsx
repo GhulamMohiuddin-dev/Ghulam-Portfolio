@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { ArrowUp } from "lucide-react";
-import { navigation, site } from "@/data/site";
+import { navigation } from "@/data/navigation";
+import { site } from "@/data/site";
+import { encodeEmail } from "@/lib/email";
 import { Container } from "@/components/ui/Container";
+import { EmailLink } from "@/components/ui/EmailLink";
 import { Monogram } from "@/components/ui/Monogram";
 
 export function Footer() {
@@ -37,11 +40,21 @@ export function Footer() {
                 LinkedIn
               </a>
             </li>
+            {site.links.email ? (
+              <li>
+                <EmailLink encoded={encodeEmail(site.links.email)} className="text-sm text-muted transition-colors hover:text-paper">
+                  Email
+                </EmailLink>
+              </li>
+            ) : null}
           </ul>
         </nav>
       </Container>
       <Container className="flex flex-col gap-4 border-t border-line py-6 sm:flex-row sm:items-center sm:justify-between">
-        <p className="label-mono">Designed &amp; engineered by {site.name} · Next.js · TypeScript · Tailwind CSS</p>
+        <p className="label-mono">
+          Designed &amp; engineered by {site.name}
+          {site.location ? ` · ${site.location}` : ""}
+        </p>
         <a href="#top" className="label-mono inline-flex items-center gap-2 transition-colors hover:text-paper">
           Back to top <ArrowUp aria-hidden className="size-3" />
         </a>

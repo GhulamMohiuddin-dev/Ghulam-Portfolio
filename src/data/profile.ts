@@ -3,7 +3,6 @@ export const hero = {
   headline: ["Engineering scalable products.", "Designing systems that last."],
   intro:
     "I'm Ghulam Mohi Ud Din, a Senior Software Engineer specializing in React, TypeScript, Node.js, and enterprise frontend architecture. I build maintainable application platforms, reusable engineering systems, and reliable delivery pipelines that help teams ship with confidence.",
-  summary: "4 years of professional software engineering — enterprise applications, platforms, and delivery.",
   coreTechnologies: [
     "React.js",
     "TypeScript",
@@ -110,6 +109,7 @@ export const skillGroups: { title: string; code: string; items: string[] }[] = [
       "Performance optimization",
       "Technical documentation",
       "Code reviews",
+      "AI-assisted development",
     ],
   },
 ];
@@ -128,8 +128,7 @@ export type ExperienceEntry = {
 
 export const experience: ExperienceEntry[] = [
   {
-    role: "Senior Software Engineer",
-    altRole: "Senior Consultant",
+    role: "Senior Consultant",
     company: "Systems Ltd",
     period: "Dec 2025 — Present",
     current: true,
@@ -147,7 +146,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     role: "Software Engineer",
-    company: null,
+    company: "Confiz Limited",
     period: "Jul 2022 — Dec 2025",
     summary: "Frontend feature development for a European telecom project.",
     highlights: [
@@ -158,6 +157,21 @@ export const experience: ExperienceEntry[] = [
       "Debugged issues and improved application functionality.",
     ],
     technologies: ["React", "JavaScript", "Redux", "GraphQL", "Chakra UI", "Adobe Experience Manager"],
+  },
+];
+
+export const engagements = [
+  {
+    title: "Full-time remote roles",
+    description: "Senior frontend or full-stack positions on product teams building enterprise-grade software.",
+  },
+  {
+    title: "Part-time contracts",
+    description: "Scoped work alongside an existing team — features, shared platforms, or delivery pipelines.",
+  },
+  {
+    title: "Frontend architecture consulting",
+    description: "Architecture reviews, micro frontend strategy, shared component libraries, and CI/CD quality gates.",
   },
 ];
 
@@ -188,6 +202,8 @@ export const emergingAI: {
   title: string;
   intro: string;
   note: string;
+  /** How AI is used in day-to-day engineering today. */
+  practice: { label: string; title: string; description: string; tools: string[]; points: string[] };
   topics: { title: string; description: string }[];
   /** Add real AI projects here — they replace the "currently exploring" treatment. */
   projects: AIProject[];
@@ -195,10 +211,23 @@ export const emergingAI: {
   status: "Currently exploring",
   title: "Exploring the next layer of software.",
   intro:
-    "I'm interested in applying large language models and Generative AI to practical software products — with the same attention to architecture, reliability, and delivery that I bring to enterprise frontend work.",
-  note: "An emerging area of study, not yet professional experience. Real projects will appear here as they are built.",
+    "AI is already part of how I build software. Next, I want to build it into the software itself — applying large language models to practical products with the same attention to architecture, reliability, and delivery I bring to enterprise frontend work.",
+  note: "Building AI features into products is an area of active study. Real projects will appear here as they are built.",
+  practice: {
+    label: "In practice today",
+    title: "AI-assisted engineering",
+    description:
+      "I use GitHub Copilot, Claude, and ChatGPT in my day-to-day development, picking the model that fits the task. They speed up the work; engineering judgment still decides what ships.",
+    tools: ["GitHub Copilot", "Claude", "ChatGPT"],
+    points: [
+      "Choosing the right model for the task at hand",
+      "Exploring implementation approaches faster",
+      "Accelerating routine code, tests, and documentation",
+      "Every change reviewed, tested, and passed through quality gates",
+    ],
+  },
   topics: [
-    { title: "LLM API integration", description: "Calling models from production-grade services." },
+    { title: "LLM API integration", description: "Calling models from application services." },
     { title: "Structured outputs", description: "Typed, validated responses instead of free text." },
     { title: "Retrieval-Augmented Generation", description: "Grounding answers in trusted sources." },
     { title: "Embeddings & vector search", description: "Semantic retrieval over private content." },

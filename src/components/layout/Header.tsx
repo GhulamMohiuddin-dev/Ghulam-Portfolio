@@ -4,12 +4,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { navigation, site } from "@/data/site";
+import { navigation } from "@/data/navigation";
 import { cn } from "@/lib/utils";
 import { Monogram } from "@/components/ui/Monogram";
 import { LinkedInIcon } from "@/components/ui/icons";
 
-export function Header() {
+type HeaderProps = {
+  name: string;
+  linkedin: string;
+  availability: string | null;
+};
+
+export function Header({ name, linkedin, availability }: HeaderProps) {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const base = isHome ? "" : "/";
@@ -30,8 +36,8 @@ export function Header() {
 
   useEffect(() => {
     if (!isHome) return;
-    const sections = navigation
-      .map((item) => document.querySelector<HTMLElement>(item.href))
+    const sections = [...navigation.map((item) => item.href), "#contact"]
+      .map((href) => document.querySelector<HTMLElement>(href))
       .filter((el): el is HTMLElement => el !== null);
 
     const observer = new IntersectionObserver(
@@ -70,15 +76,15 @@ export function Header() {
           : "border-transparent bg-transparent",
       )}
     >
-      <div className="mx-auto flex h-16 w-full max-w-[1240px] items-center justify-between gap-6 px-5 sm:px-8 lg:px-10">
+      <div className="flex h-16 w-full items-center justify-between gap-6 px-[clamp(1.25rem,4vw,6rem)]">
         <Link
           href="/"
           className="group flex items-center gap-3 rounded-[4px]"
-          aria-label={`${site.name} — home`}
+          aria-label={`${name} — home`}
           onClick={() => setOpen(false)}
         >
           <Monogram />
-          <span className="text-[15px] font-medium tracking-[-0.01em] text-paper">{site.name}</span>
+          <span className="text-[15px] font-medium tracking-[-0.01em] text-paper">{name}</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
@@ -108,15 +114,19 @@ export function Header() {
               );
             })}
           </ul>
-          {site.availability ? (
+          {availability ? (
             <span className="label-mono ml-3 hidden items-center gap-2 lg:inline-flex">
               <span aria-hidden className="size-1.5 rounded-full bg-lime" />
-              {site.availability}
+              {availability}
             </span>
           ) : null}
           <a
             href={`${base}#contact`}
-            className="ml-3 inline-flex min-h-10 items-center gap-1.5 rounded-[4px] border border-line-strong px-4 text-sm text-paper transition-colors hover:border-lime/60 hover:text-lime"
+            aria-current={isHome && active === "#contact" ? "location" : undefined}
+            className={cn(
+              "ml-3 inline-flex min-h-10 items-center gap-1.5 rounded-[4px] border px-4 text-sm transition-colors hover:border-lime/60 hover:text-lime",
+              isHome && active === "#contact" ? "border-lime/60 text-lime" : "border-line-strong text-paper",
+            )}
           >
             Let&apos;s Connect
             <ArrowUpRight aria-hidden className="size-3.5" />
@@ -157,17 +167,25 @@ export function Header() {
               ))}
             </ul>
             <div className="mt-auto flex flex-col gap-3 pt-10">
-              {site.availability ? (
+              {availability ? (
                 <p className="label-mono flex items-center gap-2">
                   <span aria-hidden className="size-1.5 rounded-full bg-lime" />
-                  {site.availability}
+                  {availability}
                 </p>
               ) : null}
               <a
-                href={site.links.linkedin}
+                href={`${base}#contact`}
+                onClick={() => setOpen(false)}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[4px] bg-lime px-5 text-sm font-medium text-ink-950"
+              >
+                Let&apos;s Connect
+                <ArrowUpRight aria-hidden className="size-4" />
+              </a>
+              <a
+                href={linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[4px] bg-lime px-5 text-sm font-medium text-ink-950"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[4px] border border-line-strong px-5 text-sm font-medium text-paper"
               >
                 <LinkedInIcon aria-hidden size={15} />
                 Connect on LinkedIn

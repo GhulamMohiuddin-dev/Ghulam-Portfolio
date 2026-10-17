@@ -1,6 +1,7 @@
 /**
  * Personal and contact configuration.
  * Optional values are `null` until real details are supplied — the UI hides anything that is not set.
+ * Server-only: don't import this from client components, or the email address ends up in the JS bundle.
  */
 
 export type SiteConfig = {
@@ -14,6 +15,7 @@ export type SiteConfig = {
   url: string;
   locale: string;
   location: string | null;
+  timezone: string | null;
   /** Shown in the header only when set, e.g. "Open to remote & contract work". */
   availability: string | null;
   links: {
@@ -39,23 +41,16 @@ export const site: SiteConfig = {
   role: "Senior Software Engineer",
   roleAlt: "Senior Consultant",
   description:
-    "Senior Software Engineer specializing in enterprise frontend architecture, micro frontends, React, TypeScript, and Node.js — building scalable web applications, reusable engineering platforms, and reliable delivery pipelines.",
+    "Senior Software Engineer specializing in enterprise frontend architecture, micro frontends, React, TypeScript, and Node.js — building scalable web applications, reusable engineering platforms, and reliable delivery pipelines, with AI-assisted development in everyday practice.",
   url: siteUrl,
   locale: "en_US",
-  location: null,
+  location: "Lahore, Pakistan",
+  timezone: "UTC+5 (PKT)",
   availability: null,
   links: {
     linkedin: "https://www.linkedin.com/in/ghulam-mohi-ud-din/",
     github: null,
-    email: null,
+    email: "ghulam.mohiuddindev@gmail.com",
     cv: null,
   },
 };
-
-export const navigation = [
-  { label: "Work", href: "#work" },
-  { label: "Engineering", href: "#engineering" },
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
-] as const;

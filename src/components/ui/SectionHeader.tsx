@@ -13,8 +13,8 @@ type SectionHeaderProps = {
 
 export function SectionHeader({ index, label, title, intro, id, className }: SectionHeaderProps) {
   return (
-    <Reveal className={cn("grid gap-6 lg:grid-cols-12 lg:gap-10", className)}>
-      <p className="label-mono flex items-center gap-3 lg:col-span-3 lg:pt-3">
+    <Reveal className={cn("grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-10", className)}>
+      <p className="label-mono flex items-center gap-3 self-start lg:col-span-3 lg:pt-4">
         <span className="text-lime">§ {index}</span>
         <span aria-hidden className="h-px w-8 bg-line-strong" />
         <span>{label}</span>
@@ -22,7 +22,7 @@ export function SectionHeader({ index, label, title, intro, id, className }: Sec
       <div className="lg:col-span-9">
         <h2
           id={id}
-          className="max-w-4xl text-balance text-[2.1rem] font-medium leading-[1.04] tracking-[-0.03em] text-paper sm:text-5xl lg:text-[3.5rem]"
+          className="max-w-[28ch] text-balance text-[2.1rem] font-medium leading-[1.04] tracking-[-0.03em] text-paper sm:text-5xl lg:text-[clamp(3.25rem,3.9vw,6rem)]"
         >
           {title}
         </h2>

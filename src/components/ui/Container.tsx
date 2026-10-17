@@ -2,5 +2,5 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 export function Container({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn("mx-auto w-full max-w-[1240px] px-5 sm:px-8 lg:px-10", className)}>{children}</div>;
+  return <div className={cn("w-full px-[clamp(1.25rem,4vw,6rem)]", className)}>{children}</div>;
 }

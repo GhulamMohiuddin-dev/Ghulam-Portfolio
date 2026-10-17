@@ -21,6 +21,14 @@ type ButtonLinkProps = {
   ariaLabel?: string;
 };
 
+export function buttonClass(variant: Variant = "primary", className?: string) {
+  return cn(
+    "group inline-flex min-h-11 items-center justify-center gap-2 rounded-[4px] px-5 text-sm font-medium tracking-[-0.005em] transition-colors duration-200",
+    variants[variant],
+    className,
+  );
+}
+
 export function ButtonLink({
   href,
   children,
@@ -29,11 +37,7 @@ export function ButtonLink({
   download,
   ariaLabel,
 }: ButtonLinkProps) {
-  const classes = cn(
-    "group inline-flex min-h-11 items-center justify-center gap-2 rounded-[4px] px-5 text-sm font-medium tracking-[-0.005em] transition-colors duration-200",
-    variants[variant],
-    className,
-  );
+  const classes = buttonClass(variant, className);
 
   if (isExternal(href) || download) {
     const newTab = href.startsWith("http");
